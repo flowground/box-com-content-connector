@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "policy_name": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "marker": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

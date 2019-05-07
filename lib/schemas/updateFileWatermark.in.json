@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "watermark": {
+                    "description": "Waternmark a semi-transparent overlay on an embedded file preview that displays a viewer's email address or user ID and the time of access over a file's content",
+                    "properties": {
+                        "created_at": {
+                            "description": "When this watermark was created",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "imprint": {
+                            "enum": [
+                                "default"
+                            ],
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "When this task was modified",
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

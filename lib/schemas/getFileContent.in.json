@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "Range": {
+            "required": false,
+            "type": "string"
+        },
+        "version": {
+            "required": false,
+            "type": "string"
+        },
+        "BoxApi": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

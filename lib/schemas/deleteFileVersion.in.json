@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "VERSION_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "SCOPE": {
+            "required": true,
+            "type": "string"
+        },
+        "TEMPLATE": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

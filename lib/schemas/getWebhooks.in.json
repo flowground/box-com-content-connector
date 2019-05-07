@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "marker": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

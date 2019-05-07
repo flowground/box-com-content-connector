@@ -1,0 +1,215 @@
+{
+    "type": "object",
+    "properties": {
+        "COLLAB_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "accessible_by": {
+                            "description": "The user or group who the collaboration applies to",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "acknowledged_at": {
+                            "description": "When the status of this collab was changed",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "can_view_path": {
+                            "description": "Whether view path collaboration feature is enabled or not. View path collaborations allow the invitee to see the entire ancestral path to the associated folder. The user will not gain privileges in any ancestral folder",
+                            "type": "boolean"
+                        },
+                        "created_at": {
+                            "description": "The time this collaboration was created",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "The user who created this collaboration",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "expires_at": {
+                            "description": "The time this collaboration will expire",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "item": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "enum": [
+                                                "folder",
+                                                "file",
+                                                "user",
+                                                "file_version",
+                                                "lock",
+                                                "collaboration",
+                                                "comment",
+                                                "task",
+                                                "web_link",
+                                                "collection",
+                                                "task_assignment",
+                                                "event",
+                                                "realtime_server",
+                                                "webhook_event",
+                                                "webhook",
+                                                "enterprise",
+                                                "invite",
+                                                "email_alias",
+                                                "group",
+                                                "group_membership",
+                                                "device_pinner",
+                                                "retention_policy",
+                                                "retention_policy_assignment",
+                                                "file_version_retention",
+                                                "legal_hold_policy",
+                                                "legal_hold_policy_assignment",
+                                                "legal_hold",
+                                                "upload_session"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "etag": {
+                                            "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "The name of the folder.",
+                                            "type": "string"
+                                        },
+                                        "sequence_id": {
+                                            "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "It references either a file or a folder",
+                            "type": "object"
+                        },
+                        "modified_at": {
+                            "description": "The time this collaboration was last modified",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "role": {
+                            "description": "The level of access this user or group has. Can be editor, viewer, previewer, uploader, previewer uploader, viewer uploader, co-owner, or owner",
+                            "enum": [
+                                "editor",
+                                "viewer",
+                                "previewer",
+                                "uploader",
+                                "previewer uploader",
+                                "viewer uploader",
+                                "co-owner",
+                                "owner"
+                            ],
+                            "type": "string"
+                        },
+                        "status": {
+                            "description": "The status of this collab. Can be accepted, pending, or rejected",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Collaborations are used to set and apply access permissions for users and groups to files and folders, similar to access control lists.",
+            "type": "object"
+        }
+    }
+}

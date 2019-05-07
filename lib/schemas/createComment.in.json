@@ -1,0 +1,172 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "created_at": {
+                            "description": "The time this comment was created",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "A mini user object representing the author of the comment",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "is_reply_comment": {
+                            "description": "Whether or not this comment is a reply to another comment",
+                            "type": "boolean"
+                        },
+                        "item": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "enum": [
+                                                "folder",
+                                                "file",
+                                                "user",
+                                                "file_version",
+                                                "lock",
+                                                "collaboration",
+                                                "comment",
+                                                "task",
+                                                "web_link",
+                                                "collection",
+                                                "task_assignment",
+                                                "event",
+                                                "realtime_server",
+                                                "webhook_event",
+                                                "webhook",
+                                                "enterprise",
+                                                "invite",
+                                                "email_alias",
+                                                "group",
+                                                "group_membership",
+                                                "device_pinner",
+                                                "retention_policy",
+                                                "retention_policy_assignment",
+                                                "file_version_retention",
+                                                "legal_hold_policy",
+                                                "legal_hold_policy_assignment",
+                                                "legal_hold",
+                                                "upload_session"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "etag": {
+                                            "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "The name of the folder.",
+                                            "type": "string"
+                                        },
+                                        "sequence_id": {
+                                            "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "It references either a file or a folder",
+                            "type": "object"
+                        },
+                        "message": {
+                            "description": "The comment text that the user typed",
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "The time this comment was last modified",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "tagged_message": {
+                            "description": "The string representing the comment text with @mentions included. @mention format is @[id:username]. Field is not included by default.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Comments are messages generated by Box users. Each message is tied to a specific file. You can create comments independently or create them as responses to other comments.\n\n\t\t\t",
+            "title": "Comment Object",
+            "type": "object"
+        }
+    }
+}

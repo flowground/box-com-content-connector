@@ -1,0 +1,154 @@
+{
+    "type": "object",
+    "properties": {
+        "ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "assignment_count": {
+                            "description": "Counts of assignments within this policy by apply-to type.",
+                            "properties": {
+                                "file": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "file_version": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "folder": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "user": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "created_at": {
+                            "description": "Time the Policy was created.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "User who created this Policy.",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "deleted_at": {
+                            "description": "Time that the policy release request was sent.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "The type and id of the content that is under retention. The type can either be folder or enterprise.",
+                            "type": "string"
+                        },
+                        "filter_ended_at": {
+                            "description": "User-specified, optional date filter applies to Custodian assignments only.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "filter_started_at": {
+                            "description": "User-specified, optional date filter applies to Custodian assignments only.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "Time that the Policy itself was modified. Does not update when assignments are added or removed.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "policy_name": {
+                            "description": "Name of the Policy. This is limited to 254 characters.",
+                            "type": "string"
+                        },
+                        "release_notes": {
+                            "description": "Notes around why the policy was released. Optional property with a 500 character limit.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "enum": [
+                                "active",
+                                "applying",
+                                "releasing",
+                                "released"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Legal Hold Policy information describes the basic characteristics of the Policy, such as name, description, and filter dates.",
+            "title": "Legal Hold Policy object",
+            "type": "object"
+        }
+    }
+}

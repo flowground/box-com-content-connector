@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "FOLDER_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "offset": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

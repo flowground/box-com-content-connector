@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "actionable_by": {
+                    "description": "It references a user",
+                    "properties": {
+                        "id": {
+                            "description": "Unqiue string identifying this user.",
+                            "type": "string"
+                        },
+                        "login": {
+                            "description": "The email address this user uses to login.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Name of this user",
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "user"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "enterprise": {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

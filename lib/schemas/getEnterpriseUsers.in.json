@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "filter_term": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "user_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "all",
+                "external",
+                "managed"
+            ]
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "USER_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "EMAIL_ALIAS_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

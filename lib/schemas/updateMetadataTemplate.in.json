@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "SCOPE": {
+            "required": true,
+            "type": "string"
+        },
+        "TEMPLATE": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": [
+                {
+                    "data": {
+                        "description": "Test"
+                    },
+                    "fieldKey": "test",
+                    "op": "editField"
+                }
+            ],
+            "items": {
+                "properties": {
+                    "data": {
+                        "description": "The data for the operation.  Can vary depending on the operation.",
+                        "type": "object"
+                    },
+                    "enumOptionKeys": {
+                        "description": "For operations that affect multiple enum options, the keys of the enum options to be affected.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "fieldKey": {
+                        "description": "For operations that affect a specific field, the key of the field to be affected.",
+                        "type": "string"
+                    },
+                    "fieldKeys": {
+                        "description": "For operations that affect multiple fields, the keys of the fields to be affected.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "op": {
+                        "description": "The operation name.",
+                        "enum": [
+                            "addEnumOption",
+                            "addField",
+                            "editEnumOption",
+                            "editField",
+                            "editTemplate",
+                            "removeEnumOption",
+                            "removeField",
+                            "reorderEnumOptions",
+                            "reorderFields"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "op"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    }
+}

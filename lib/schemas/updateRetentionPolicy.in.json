@@ -1,0 +1,140 @@
+{
+    "type": "object",
+    "properties": {
+        "POLICY_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "folder",
+                                        "file",
+                                        "user",
+                                        "file_version",
+                                        "lock",
+                                        "collaboration",
+                                        "comment",
+                                        "task",
+                                        "web_link",
+                                        "collection",
+                                        "task_assignment",
+                                        "event",
+                                        "realtime_server",
+                                        "webhook_event",
+                                        "webhook",
+                                        "enterprise",
+                                        "invite",
+                                        "email_alias",
+                                        "group",
+                                        "group_membership",
+                                        "device_pinner",
+                                        "retention_policy",
+                                        "retention_policy_assignment",
+                                        "file_version_retention",
+                                        "legal_hold_policy",
+                                        "legal_hold_policy_assignment",
+                                        "legal_hold",
+                                        "upload_session"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "policy_name": {
+                                    "description": "The name given to the retention policy",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "Mini representation of the retention policy",
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "created_at": {
+                            "description": "The time that the retention policy was created.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "A mini user object representing the user that created the retention policy.",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "disposition_action": {
+                            "description": "The disposition action of the retention policy. This actioncan be permanently_delete, which will cause the content retained by the policy to be permanently deleted, or remove_retention, which will lift the retention policy from the content, allowing it to be deleted by users, once the retention policy time period has passed.",
+                            "enum": [
+                                "permanently_delete",
+                                "remove_retention"
+                            ],
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "The time that the retention policy was last modified.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "policy_type": {
+                            "description": "The type of the retention policy. A retention policy type can either be finite, where a specific amount of time to retain the content is known upfront, or indefinite, where the amount of time to retain the content is still unknown.",
+                            "enum": [
+                                "finite",
+                                "indefinite"
+                            ],
+                            "type": "string"
+                        },
+                        "retention_length": {
+                            "description": "The length of the retention policy. This length specifies the duration in days that the retention policy will beactive for after being assigned to content.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "status": {
+                            "description": "The status of a retention policy. The status of a policy will be active, unless explicitly retired by an administrator, in which case the status will be retired. Once a policyhas been retired, it cannot become active again.",
+                            "enum": [
+                                "active",
+                                "retired"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "A retention policy blocks permanent deletion of content for a specified amount of time. Admins can create retention policies and then later assign them to specific folders or their entire enterprise.  To use this feature, you must have the manage retention policies scope enabled for your API key via your application management console. For more information about retention policies, please visit our help documentation. \n\n\t\t\t",
+            "title": "Retention Policy Object",
+            "type": "object"
+        }
+    }
+}

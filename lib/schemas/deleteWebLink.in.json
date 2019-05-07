@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "WEB_LINK_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "policy_id": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

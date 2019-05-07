@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "EXTENSION": {
+            "required": true,
+            "type": "string"
+        },
+        "min_height": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "min_width": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "max_height": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "max_width": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

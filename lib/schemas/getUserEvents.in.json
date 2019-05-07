@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "stream_position": {
+            "required": false,
+            "type": "string"
+        },
+        "stream_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "all",
+                "changes",
+                "sync",
+                "admin_logs"
+            ]
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "event_type": {
+            "required": false,
+            "type": "string"
+        },
+        "created_after": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "created_before": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

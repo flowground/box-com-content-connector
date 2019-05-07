@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "SCOPE": {
+            "required": true,
+            "type": "string"
+        },
+        "TEMPLATE": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

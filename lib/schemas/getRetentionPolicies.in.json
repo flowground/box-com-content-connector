@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "policy_name": {
+            "required": false,
+            "type": "string"
+        },
+        "policy_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "finite",
+                "indefinite"
+            ]
+        },
+        "created_by_user_id": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

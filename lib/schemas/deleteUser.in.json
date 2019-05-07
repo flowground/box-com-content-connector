@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "USER_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "notify": {
+            "type": "boolean"
+        },
+        "force": {
+            "type": "boolean"
+        }
+    }
+}

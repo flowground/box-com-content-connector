@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "COLLAB_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "status": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "pending"
+            ]
+        }
+    }
+}

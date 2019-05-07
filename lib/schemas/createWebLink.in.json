@@ -1,0 +1,407 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "folder",
+                                        "file",
+                                        "user",
+                                        "file_version",
+                                        "lock",
+                                        "collaboration",
+                                        "comment",
+                                        "task",
+                                        "web_link",
+                                        "collection",
+                                        "task_assignment",
+                                        "event",
+                                        "realtime_server",
+                                        "webhook_event",
+                                        "webhook",
+                                        "enterprise",
+                                        "invite",
+                                        "email_alias",
+                                        "group",
+                                        "group_membership",
+                                        "device_pinner",
+                                        "retention_policy",
+                                        "retention_policy_assignment",
+                                        "file_version_retention",
+                                        "legal_hold_policy",
+                                        "legal_hold_policy_assignment",
+                                        "legal_hold",
+                                        "upload_session"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "etag": {
+                                    "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the folder.",
+                                    "type": "string"
+                                },
+                                "sequence_id": {
+                                    "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "It references either a file or a folder",
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "created_at": {
+                            "description": "When this file was created on Box’s servers.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "The user who first created file.",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "description": {
+                            "description": "The description accompanying the web link. This is visible within the Box web application.",
+                            "type": "string"
+                        },
+                        "item_status": {
+                            "description": "Whether this item is deleted or not.",
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "When this file was last updated on the Box servers.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "modified_by": {
+                            "description": "The user who last updated this file.",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "owned_by": {
+                            "description": "The user who owns this file.",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "parent": {
+                            "description": "The parent object the web link belongs to",
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "enum": [
+                                                "folder",
+                                                "file",
+                                                "user",
+                                                "file_version",
+                                                "lock",
+                                                "collaboration",
+                                                "comment",
+                                                "task",
+                                                "web_link",
+                                                "collection",
+                                                "task_assignment",
+                                                "event",
+                                                "realtime_server",
+                                                "webhook_event",
+                                                "webhook",
+                                                "enterprise",
+                                                "invite",
+                                                "email_alias",
+                                                "group",
+                                                "group_membership",
+                                                "device_pinner",
+                                                "retention_policy",
+                                                "retention_policy_assignment",
+                                                "file_version_retention",
+                                                "legal_hold_policy",
+                                                "legal_hold_policy_assignment",
+                                                "legal_hold",
+                                                "upload_session"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "etag": {
+                                            "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "The name of the folder.",
+                                            "type": "string"
+                                        },
+                                        "sequence_id": {
+                                            "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "type": "object"
+                        },
+                        "path_collection": {
+                            "description": "The path of folders to this item, starting at the root.",
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "limit": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "offset": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "order": {
+                                            "items": {
+                                                "properties": {
+                                                    "by": {
+                                                        "type": "string"
+                                                    },
+                                                    "direction": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "total_count": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "entries": {
+                                            "items": {
+                                                "allOf": [
+                                                    {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": {
+                                                                "enum": [
+                                                                    "folder",
+                                                                    "file",
+                                                                    "user",
+                                                                    "file_version",
+                                                                    "lock",
+                                                                    "collaboration",
+                                                                    "comment",
+                                                                    "task",
+                                                                    "web_link",
+                                                                    "collection",
+                                                                    "task_assignment",
+                                                                    "event",
+                                                                    "realtime_server",
+                                                                    "webhook_event",
+                                                                    "webhook",
+                                                                    "enterprise",
+                                                                    "invite",
+                                                                    "email_alias",
+                                                                    "group",
+                                                                    "group_membership",
+                                                                    "device_pinner",
+                                                                    "retention_policy",
+                                                                    "retention_policy_assignment",
+                                                                    "file_version_retention",
+                                                                    "legal_hold_policy",
+                                                                    "legal_hold_policy_assignment",
+                                                                    "legal_hold",
+                                                                    "upload_session"
+                                                                ],
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "etag": {
+                                                                "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "description": "The name of the folder.",
+                                                                "type": "string"
+                                                            },
+                                                            "sequence_id": {
+                                                                "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ],
+                                                "description": "It references either a file or a folder",
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "type": "object"
+                        },
+                        "purged_at": {
+                            "description": "When this file will be permanently deleted.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "shared_link": {
+                            "description": "The shared link object for this file.",
+                            "properties": {
+                                "access": {
+                                    "type": "string"
+                                },
+                                "download_count": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "download_url": {
+                                    "type": "string"
+                                },
+                                "effective_access": {
+                                    "type": "string"
+                                },
+                                "is_password_enabled": {
+                                    "type": "boolean"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "permissions": {
+                                    "properties": {
+                                        "can_download": {
+                                            "type": "boolean"
+                                        },
+                                        "can_preview": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "preview_count": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "unshared_at": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                },
+                                "vanity_url": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "trashed_at": {
+                            "description": "When this file was last moved to the trash.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "url": {
+                            "description": "The URL this web link points to.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Web links are objects that point to URLs. These objects are also known as bookmarks within the Box web application. Web link objects are treated similarly to file objects, so they will also support shared links, copy, permanent delete, and restore with the format /web_links/{WEB_LINK_ID} in place of /files/{FILE_ID}.",
+            "title": "Web Link Object",
+            "type": "object"
+        }
+    }
+}

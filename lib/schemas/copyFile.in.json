@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "parent": {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Metadata that belongs to a file or folder is grouped by templates. Templates allow the metadata service to provide a multitude of services, such as pre-defining sets of key:value pairs or schema enforcement on specific fields.",
+            "properties": {
+                "displayName": {
+                    "description": "The display name of the template. The character limit is 4096.",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "The ordered set of key:value pairs for the template.",
+                    "items": {
+                        "properties": {
+                            "description": {
+                                "description": "A description of the field. The character limit is 4096. All characters are allowed.",
+                                "type": "string"
+                            },
+                            "displayName": {
+                                "description": "The display name of the field. The character limit is 4096. All characters are allowed.",
+                                "type": "string"
+                            },
+                            "hidden": {
+                                "type": "boolean"
+                            },
+                            "key": {
+                                "description": "A unique identifier for the field. The identifier must be unique within the template to which it belongs. The character limit is 256. All characters are allowed.",
+                                "type": "string"
+                            },
+                            "options": {
+                                "items": {
+                                    "properties": {
+                                        "key": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "type": {
+                                "description": "The data type of the field's value.",
+                                "enum": [
+                                    "string",
+                                    "enum",
+                                    "float",
+                                    "date"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "hidden": {
+                    "description": "Whether this template is hidden in the UI",
+                    "type": "boolean"
+                },
+                "scope": {
+                    "description": "The scope of the object.",
+                    "type": "string"
+                },
+                "templateKey": {
+                    "description": "A unique identifier for the template. The identifier must be unique across the scope of the enterprise to which the metadata template is being applied to. Defaults to a string derived from the displayName if no value is provided.",
+                    "type": "string"
+                }
+            },
+            "title": "Metadata Template Object",
+            "type": "object"
+        }
+    }
+}

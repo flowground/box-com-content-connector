@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "ENTERPRISE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "marker": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "string"
+        },
+        "direction": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

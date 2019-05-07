@@ -1,0 +1,144 @@
+{
+    "type": "object",
+    "properties": {
+        "WEBHOOK_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "address": {
+                            "description": "The notification URL of the webhook. The notification URL is the URL used by Box to send a notification when the webhook is triggered.",
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "description": "An RFC-3339 timestamp identifying the time that the webhook was created.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "It references a user",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "target": {
+                            "description": "A target is a file or folder",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "folder",
+                                        "file",
+                                        "user",
+                                        "file_version",
+                                        "lock",
+                                        "collaboration",
+                                        "comment",
+                                        "task",
+                                        "web_link",
+                                        "collection",
+                                        "task_assignment",
+                                        "event",
+                                        "realtime_server",
+                                        "webhook_event",
+                                        "webhook",
+                                        "enterprise",
+                                        "invite",
+                                        "email_alias",
+                                        "group",
+                                        "group_membership",
+                                        "device_pinner",
+                                        "retention_policy",
+                                        "retention_policy_assignment",
+                                        "file_version_retention",
+                                        "legal_hold_policy",
+                                        "legal_hold_policy_assignment",
+                                        "legal_hold",
+                                        "upload_session"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "triggers": {
+                            "description": "An array of event names. The events that webhooks support are listed in the 'Event Triggers' (https://docs.box.com/reference#event-triggers) section.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "When you create or retrieve a webhook a JSON object representing the webhook is returned to you. This JSON object's fields contain the name and ID of the webhook, along with configuration details such as its target and its notification URL.",
+            "title": "Webhook Object",
+            "type": "object"
+        }
+    }
+}

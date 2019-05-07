@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "WEBHOOK_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

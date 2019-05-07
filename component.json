@@ -1,0 +1,2229 @@
+{
+    "title": "Box 2.0",
+    "description": "The Box Content API gives you access to secure content management and content experience features for use in your own app. It strives to be RESTful and is organized around the main resources you're familiar with from the Box web interface.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/box.com/content/2.0/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.box.com/2.0",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "OAuth2Security": {
+                "label": "OAuth2Security",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://account.box.com/api/oauth2/authorize",
+            "token_uri": "https://api.box.com/oauth2/token"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "getPendingCollaborations": {
+            "main": "./lib/actions/getPendingCollaborations.js",
+            "title": "Pending Collaborations",
+            "description": "Used to retrieve all pending collaboration invites for this user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getPendingCollaborations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createCollaboration": {
+            "main": "./lib/actions/createCollaboration.js",
+            "title": "Create Collaboration",
+            "description": "Used to add a collaboration for a single user or a single group to a folder. Either an email address, a user ID, or a group id can be used to create the collaboration. If the collaboration is being created with a group, access to this endpoint is granted based on the group's invitability_level.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createCollaboration.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteCollaboration": {
+            "main": "./lib/actions/deleteCollaboration.js",
+            "title": "Delete Collaboration",
+            "description": "Used to delete a single collaboration.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteCollaboration.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCollaboration": {
+            "main": "./lib/actions/getCollaboration.js",
+            "title": "Get Collaboration",
+            "description": "Used to get information about a single collaboration. All collaborations for a single folder can be retrieved through GET /folders/{id}/collaborations. A complete list of the user's pending collaborations can also be retrieved.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCollaboration.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateCollaboation": {
+            "main": "./lib/actions/updateCollaboation.js",
+            "title": "Update Collaboration",
+            "description": "Used to edit an existing collaboration. Descriptions of the various roles can be found here.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateCollaboation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCollections": {
+            "main": "./lib/actions/getCollections.js",
+            "title": "Get Collections",
+            "description": "Retrieves the collections for the given user. Currently, only the favorites collection is supported.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCollections.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCollectionItems": {
+            "main": "./lib/actions/getCollectionItems.js",
+            "title": "Get Collection Items",
+            "description": "Retrieves the files and/or folders contained within this collection. Collection item lists behave a lot like getting a folder's items.\nPaginated results can be retrieved using the limit and offset parameters.\nSub-object fields can be requested via the ?fields parameter",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCollectionItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createComment": {
+            "main": "./lib/actions/createComment.js",
+            "title": "Create Comment",
+            "description": "Used to add a comment by the user to a specific file or comment (i.e. as a reply comment).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createComment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteComment": {
+            "main": "./lib/actions/deleteComment.js",
+            "title": "Delete Comment",
+            "description": "Permanently deletes a comment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteComment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getComment": {
+            "main": "./lib/actions/getComment.js",
+            "title": "Get Comment",
+            "description": "Used to retrieve the message and metadata about a specific comment. Information about the user who created the comment is also included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getComment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateComment": {
+            "main": "./lib/actions/updateComment.js",
+            "title": "Update Comment",
+            "description": "Used to update the message of the comment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateComment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteDevicePin": {
+            "main": "./lib/actions/deleteDevicePin.js",
+            "title": "Delete Device Pin",
+            "description": "Delete individual device pin.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteDevicePin.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getDevicePin": {
+            "main": "./lib/actions/getDevicePin.js",
+            "title": "Get Device Pin",
+            "description": "Gets information about an individual device pin.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getDevicePin.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnterpriseDevicePins": {
+            "main": "./lib/actions/getEnterpriseDevicePins.js",
+            "title": "Get Enterprise Device Pins",
+            "description": "Gets all the device pins within a given enterprise. Must be an enterprise admin with the manage enterprise scope to make this call.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnterpriseDevicePins.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUserEvents": {
+            "main": "./lib/actions/getUserEvents.js",
+            "title": "User Events, Enterprise Events",
+            "description": "Use this to get events for a given user. A chunk of event objects is returned for the user based on the parameters passed in. Parameters indicating how many chunks are left as well as the next stream_position are also returned.\n\nTo retrieve Enterprise Events specify 'stream_type=admin_logs'. Retrieves up to a year' events for all users in an enterprise. Upper and lower bounds as well as filters can be applied to the results.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUserEvents.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "eventLongPolling": {
+            "main": "./lib/actions/eventLongPolling.js",
+            "title": "Long polling",
+            "description": "To get real-time notification of activity in a Box account, use the long poll feature of the /events API. To do so, first call the /events API with an OPTIONS call to retrieve the long poll URL to use. Next, make a GET request to the provided URL to begin listening for events. If an event occurs within an account you are monitoring, you will receive a response with the value new_change. It's important to note that this response will not come with any other details, but should serve as a prompt to take further action such as calling the /events endpoint with your last known stream_position. After sending this response, the server will close the connection and you will need to repeat the long poll process to begin listening for events again.\nIf no events occur for a period of time after you make the GET request to the long poll URL, you will receive a response with the value reconnect. When you receive this response, you'll make another OPTIONS call to the /events endpoint and repeat the long poll process.\nIf you receive no events in retry_timeout seconds, you should make another GET request to the real time server (i.e. URL in the response). This might be necessary in case you do not receive the reconnect message in the face of network errors.\nIf you receive max_retries error when making GET requests to the real time server, you should make another OPTIONS request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/eventLongPolling.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileVersionLegalHoldPolicies": {
+            "main": "./lib/actions/getFileVersionLegalHoldPolicies.js",
+            "title": "Get List of File Version Legal Holds",
+            "description": "Get list of non-deleted Holds for a single Policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileVersionLegalHoldPolicies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileVersionLegalHoldPolicy": {
+            "main": "./lib/actions/getFileVersionLegalHoldPolicy.js",
+            "title": "Get File Version Legal Hold",
+            "description": "Get details of a single File Version Legal Hold.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileVersionLegalHoldPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileVersionRetentions": {
+            "main": "./lib/actions/getFileVersionRetentions.js",
+            "title": "Get File Version Retentions",
+            "description": "Retrieves all file version retentions for the given enterprise.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileVersionRetentions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileVersionRetention": {
+            "main": "./lib/actions/getFileVersionRetention.js",
+            "title": "Get File Version Retention",
+            "description": "Used to retrieve information about a file version retention",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileVersionRetention.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "fileUploadPreflightCheck": {
+            "main": "./lib/actions/fileUploadPreflightCheck.js",
+            "title": "File upload preflight check",
+            "description": "The Pre-flight check API will verify that a file will be accepted by Box before you send all the bytes over the wire.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/fileUploadPreflightCheck.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFile": {
+            "main": "./lib/actions/deleteFile.js",
+            "title": "Delete File",
+            "description": "Discards a file to the trash. The etag of the file can be included as an 'If-Match' header to prevent race conditions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFile": {
+            "main": "./lib/actions/getFile.js",
+            "title": "Get File's Info, Get Embed Link",
+            "description": "Used to retrieve the metadata about a file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "restoreTrashedFile": {
+            "main": "./lib/actions/restoreTrashedFile.js",
+            "title": "Restore Item",
+            "description": "Restores an item that has been moved to the trash. Default behavior is to restore the item to the folder it was in before it was moved to the trash. If that parent folder no longer exists or if there is now an item with the same name in that parent folder, the new parent folder and/or new name will need to be included in the request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/restoreTrashedFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFileInfo": {
+            "main": "./lib/actions/updateFileInfo.js",
+            "title": "Update File Info, Lock and Unlock, Create Shared Link",
+            "description": "Used to update individual or multiple fields in the file object, including renaming the file, changing its description, and creating a shared link for the file. To move a file, change the ID of its parent folder. An optional If-Match header can be included to prevent race conditions.\n\nTo lock and unlock files, you execute a PUT operation on the /files/{file id} endpoint and set or clear the lock properties on the file.\n\nUsed to create a shared link for this particular file. Please see here for more information on the permissions available for shared links. In order to get default shared link status, set it to an empty access level, i.e. {\"shared_link\": {}}. In order to disable a shared link, send this same type of PUT request with the value of shared_link set to null, i.e. {\"shared_link\": null}",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFileInfo.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileCollaborations": {
+            "main": "./lib/actions/getFileCollaborations.js",
+            "title": "Get File's Collaborations",
+            "description": "Use this to get a list of all the collaborations on a file",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileCollaborations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileComments": {
+            "main": "./lib/actions/getFileComments.js",
+            "title": "Get File's Comments",
+            "description": "Retrieves the comments on a particular file, if any exist.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileComments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileContent": {
+            "main": "./lib/actions/getFileContent.js",
+            "title": "Download File",
+            "description": "Retrieves the actual data of the file. An optional version parameter can be set to download a previous version of the file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileContent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "copyFile": {
+            "main": "./lib/actions/copyFile.js",
+            "title": "Copy File",
+            "description": "Used to create a copy of a file in another folder. The original version of the file will not be altered.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/copyFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getAllFileMetadata": {
+            "main": "./lib/actions/getAllFileMetadata.js",
+            "title": "Get all Metadata on File",
+            "description": "Used to retrieve all metadata associated with a given file",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getAllFileMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFileMetadata": {
+            "main": "./lib/actions/deleteFileMetadata.js",
+            "title": "Delete Metadata on File",
+            "description": "Used to delete the template instance. To delete custom key:value pairs within a template instance, you should refer to the updating metadata section.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFileMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileMetadata": {
+            "main": "./lib/actions/getFileMetadata.js",
+            "title": "Get Metadata on File",
+            "description": "Used to retrieve the metadata template instance for a corresponding Box file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createFileMetadata": {
+            "main": "./lib/actions/createFileMetadata.js",
+            "title": "Create Metadata on File",
+            "description": "Used to create the metadata template instance for a corresponding Box file. When creating metadata, only values that adhere to the metadata template schema will be accepted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createFileMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFileMetadata": {
+            "main": "./lib/actions/updateFileMetadata.js",
+            "title": "Update Metadata on File",
+            "description": "Used to update the template instance. The request body must follow the JSON-Patch specification, which is represented as a JSON array of operation objects (see examples for more details). Updates can be either add, replace, remove , test, move, or copy. The template instance can only be updated if the template instance already exists. When editing metadata, only values that adhere to the metadata template schema will be accepted.\nThe update is applied atomically. If any errors occur during the application of the update operations, the metadata instance remains unchanged.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json-patch+json": "application/json-patch+json",
+                        "application/json": "application/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFileMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileTasks": {
+            "main": "./lib/actions/getFileTasks.js",
+            "title": "Get File's Tasks",
+            "description": "Retrieves all of the tasks for given file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileTasks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileThumbnail": {
+            "main": "./lib/actions/getFileThumbnail.js",
+            "title": "Get Thumbnail",
+            "description": "Retrieves a thumbnail, or smaller image representation, of this file. Sizes of 32x32,64x64, 128x128, and 256x256 can be returned in the .png format and sizes of 32x32, 94x94, 160x160, and 320x320 can be returned in the .jpg format. Thumbnails can be generated for the image and video file formats listed here.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileThumbnail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTrashedFile": {
+            "main": "./lib/actions/deleteTrashedFile.js",
+            "title": "Permanently Delete",
+            "description": "Permanently deletes an item that is in the trash. The item will no longer exist in Box. This action cannot be undone.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTrashedFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTrashedFile": {
+            "main": "./lib/actions/getTrashedFile.js",
+            "title": "Get Trashed File",
+            "description": "Retrieves an item that has been moved to the trash.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTrashedFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileVersions": {
+            "main": "./lib/actions/getFileVersions.js",
+            "title": "View Versions",
+            "description": "If there are previous versions of this file, this method can be used to retrieve information about the older versions. (Versions are only tracked for Box users with premium accounts.)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileVersions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "promotoeFileVersion": {
+            "main": "./lib/actions/promotoeFileVersion.js",
+            "title": "Promote Version",
+            "description": "If there are previous versions of this file, this method can be used to promote one of the older versions to the top of the stack. This actually mints a copy of the old version and puts it on the top of the versions stack. The file will have the exact same contents, the same SHA1/etag, and the same name as the original. Other properties such as comments do not get updated to their former values.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/promotoeFileVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFileVersion": {
+            "main": "./lib/actions/deleteFileVersion.js",
+            "title": "Delete Old Version",
+            "description": "Discards a specific file version to the trash. (Depending on the enterprise settings for this user, the item will either be actually deleted from Box or moved to the trash.)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFileVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFileWatermark": {
+            "main": "./lib/actions/deleteFileWatermark.js",
+            "title": "Remove Watermark on File",
+            "description": "Used to remove the watermark for a corresponding Box file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFileWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFileWatermark": {
+            "main": "./lib/actions/getFileWatermark.js",
+            "title": "Get Watermark on File",
+            "description": "Used to retrieve the watermark for a corresponding Box file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFileWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFileWatermark": {
+            "main": "./lib/actions/updateFileWatermark.js",
+            "title": "Apply Watermark on File",
+            "description": "Used to apply or update the watermark for a corresponding Box file. The endpoint accepts a JSON body describing the watermark to apply.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFileWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createFolder": {
+            "main": "./lib/actions/createFolder.js",
+            "title": "Create Folder",
+            "description": "Used to create a new empty folder. The new folder will be created inside of the specified parent folder",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTrashedItems": {
+            "main": "./lib/actions/getTrashedItems.js",
+            "title": "Get Trashed Items",
+            "description": "Retrieves the files and/or folders that have been moved to the trash. Any attribute in the full files or folders objects can be passed in with the fields parameter to get specific attributes, and only those specific attributes back; otherwise, the mini format is returned for each item by default. Multiple attributes can be passed in separated by commas e.g. fields=name,created_at. Paginated results can be retrieved using the limit and offset parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTrashedItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFolder": {
+            "main": "./lib/actions/deleteFolder.js",
+            "title": "Delete Folder",
+            "description": "Used to delete a folder. A recursive parameter must be included in order to delete folders that have items inside of them. An optional If-Match header can be included to ensure that client only deletes the folder if it knows about the latest version.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFolder": {
+            "main": "./lib/actions/getFolder.js",
+            "title": "Get Folder's Info",
+            "description": "Retrieves the full metadata about a folder, including information about when it was last updated as well as the files and folders contained in it. The root folder of a Box account is always represented by the id \"0\".",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "restoreTrashedFolder": {
+            "main": "./lib/actions/restoreTrashedFolder.js",
+            "title": "Restore Folder",
+            "description": "Restores an item that has been moved to the trash. Default behavior is to restore the item to the folder it was in before it was moved to the trash. If that parent folder no longer exists or if there is now an item with the same name in that parent folder, the new parent folder and/or new name will need to be included in the request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/restoreTrashedFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFolder": {
+            "main": "./lib/actions/updateFolder.js",
+            "title": "Update Folder, Create Shared Link, Create or Delete",
+            "description": "Used to update information about the folder. To move a folder, update the ID of its parent. To enable an email address that can be used to upload files to this folder, update the folder_upload_email attribute. An optional If-Match header can be included to ensure that client only updates the folder if it knows about the latest version.\n\nUsed to create a shared link for this particular folder. Please see here for more information on the permissions available for shared links. In order to get default shared link status, set it to an empty access level, i.e. {\"shared_link\": {}}. In order to disable a shared link, send this same type of PUT request with the value of shared_link set to null, i.e. {\"shared_link\": null}\n\nTo add or remove an item from a collection, you do a PUT on that item and change the list of collections it belongs to. Philosophically, this is similar to the way \"move\" operations work on files and folders: you do a PUT on the item and change its parent. It's the same idea with collections, except you're changing which collection(s) the item belongs to instead of the folder it belongs to. Currently the only collection available is the favorites collection, and you'll need to know it's ID for the user that is making the API call, since every user has a different favorites collection_id.\nThe Add/Remove API handling will check all ids passed in before performing any add/removal operations. If any collection ids are malformed or do not exist in the user's account, the API call will throw a 400. Only if all of the collection ids are valid will the adds and removals be carried out.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFolderCollaborations": {
+            "main": "./lib/actions/getFolderCollaborations.js",
+            "title": "Get Folder Collaborations",
+            "description": "Use this to get a list of all the collaborations on a folder i.e. all of the users that have access to that folder.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFolderCollaborations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "copyFolder": {
+            "main": "./lib/actions/copyFolder.js",
+            "title": "Copy Folder",
+            "description": "Used to create a copy of a folder in another folder. The original version of the folder will not be altered.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/copyFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFolderItems": {
+            "main": "./lib/actions/getFolderItems.js",
+            "title": "Get Folder's Items",
+            "description": "Retrieves the files and/or folders contained within this folder without any other metadata about the folder. Any attribute in the full files or folders objects can be passed in with the fields parameter to get specific attributes, and only those specific attributes back; otherwise, the mini format is returned for each item by default. Multiple attributes can be passed in separated by commas e.g. fields=name,created_at. Paginated results can be retrieved using the limit and offset parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFolderItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getAllFolderMetadata": {
+            "main": "./lib/actions/getAllFolderMetadata.js",
+            "title": "Get All Metadata on Folder",
+            "description": "Used to retrieve all metadata associated with a given folder",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getAllFolderMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFolderMetadata": {
+            "main": "./lib/actions/deleteFolderMetadata.js",
+            "title": "Delete Metadata on Folder",
+            "description": "Used to delete the template instance. To delete custom key:value pairs within a template instance, you should refer to the updating metadata section.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFolderMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFolderMetadata": {
+            "main": "./lib/actions/getFolderMetadata.js",
+            "title": "Get Metadata on Folder",
+            "description": "Used to retrieve the metadata template instance for a corresponding Box folder.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFolderMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createFolderMetadata": {
+            "main": "./lib/actions/createFolderMetadata.js",
+            "title": "Create Metadata on Folder",
+            "description": "Used to create the metadata template instance for a corresponding Box folder. When creating metadata, only values that adhere to the metadata template schema will be accepted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createFolderMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFolderMetadata": {
+            "main": "./lib/actions/updateFolderMetadata.js",
+            "title": "Update Metadata on Folder",
+            "description": "Used to update the template instance. Updates can be either add, replace, remove , or test. The template instance can only be updated if the template instance already exists. When editing metadata, only values that adhere to the metadata template schema will be accepted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json-patch+json": "application/json-patch+json",
+                        "application/json": "application/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFolderMetadata.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTrashedFolder": {
+            "main": "./lib/actions/deleteTrashedFolder.js",
+            "title": "Permanently Delete",
+            "description": "Permanently deletes an folder that is in the trash. The item will no longer exist in Box. This action cannot be undone.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTrashedFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTrashedFolder": {
+            "main": "./lib/actions/getTrashedFolder.js",
+            "title": "Get Trashed Folder",
+            "description": "Retrieves an folder that has been moved to the trash.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTrashedFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteFolderWatermark": {
+            "main": "./lib/actions/deleteFolderWatermark.js",
+            "title": "Remove Watermark on Folder",
+            "description": "Used to remove the watermark for a corresponding Box Folder.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteFolderWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFolderWatermark": {
+            "main": "./lib/actions/getFolderWatermark.js",
+            "title": "Get Watermark on Folder",
+            "description": "Used to retrieve the watermark for a corresponding Box folder.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFolderWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateFolderWatermark": {
+            "main": "./lib/actions/updateFolderWatermark.js",
+            "title": "Apply Watermark on Folder",
+            "description": "Used to apply or update the watermark for a corresponding Box folder. The endpoints accepts a JSON body describing the watermark to apply.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateFolderWatermark.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createGroupMembership": {
+            "main": "./lib/actions/createGroupMembership.js",
+            "title": "Create Membership",
+            "description": "Used to add a member to a Group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteGroupMembership": {
+            "main": "./lib/actions/deleteGroupMembership.js",
+            "title": "Delete Membership",
+            "description": "Deletes a specific group membership.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getGroupMembership": {
+            "main": "./lib/actions/getGroupMembership.js",
+            "title": "Get Membership",
+            "description": "Fetches a specific group membership entry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateGroupMembership": {
+            "main": "./lib/actions/updateGroupMembership.js",
+            "title": "Update Membership",
+            "description": "Used to update a group membership.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnterpriseGroups": {
+            "main": "./lib/actions/getEnterpriseGroups.js",
+            "title": "Get Groups for an Enterprise",
+            "description": "Retrieves all of the groups for given enterprise. Must have permissions to see an enterprise's groups.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnterpriseGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createGroup": {
+            "main": "./lib/actions/createGroup.js",
+            "title": "Create Group",
+            "description": "Used to create a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteGroup": {
+            "main": "./lib/actions/deleteGroup.js",
+            "title": "Delete Group",
+            "description": "Permanently deletes a specific group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getGroup": {
+            "main": "./lib/actions/getGroup.js",
+            "title": "Get Group",
+            "description": "Used to get information about a group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateGroup": {
+            "main": "./lib/actions/updateGroup.js",
+            "title": "Update Group",
+            "description": "Updates a specific group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getGroupCollaborations": {
+            "main": "./lib/actions/getGroupCollaborations.js",
+            "title": "Get Collaborations for Group",
+            "description": "Retrieves all of the group collaborations for a given group. Note this is only available to group admins.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getGroupCollaborations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getGroupMemberships": {
+            "main": "./lib/actions/getGroupMemberships.js",
+            "title": "Get Memberships for Group",
+            "description": "Retrieves all of the members for a given group if the requesting user has access (see Group Object member_viewability_level).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getGroupMemberships.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createInvite": {
+            "main": "./lib/actions/createInvite.js",
+            "title": "Invite User",
+            "description": "Invites an existing user to join an Enterprise. The existing user can not be part of another Enterprise and must already have a Box account. Once invited, the user will receive an email and prompt to accept the invitation within the Box web application. This method requires the \"Manage An Enterprise\" scope for the enterprise, which can be enabled within your developer console.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createInvite.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getInvite": {
+            "main": "./lib/actions/getInvite.js",
+            "title": "Get status of the invite",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getInvite.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLegalHoldPolicies": {
+            "main": "./lib/actions/getLegalHoldPolicies.js",
+            "title": "Get Legal Hold Policies",
+            "description": "Get a list of Legal Hold Policies that belong to your Enterprise.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLegalHoldPolicies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createLegalHoldPolicy": {
+            "main": "./lib/actions/createLegalHoldPolicy.js",
+            "title": "Create New Legal Hold Policy",
+            "description": "Create a new Legal Hold Policy. Optional date filter may be passed. If Policy has a date filter, any Custodian assignments will apply only to file versions created or uploaded inside of the date range.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createLegalHoldPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteLegalHoldPolicy": {
+            "main": "./lib/actions/deleteLegalHoldPolicy.js",
+            "title": "Delete Legal Hold Policy",
+            "description": "Sends request to delete an existing Legal Hold Policy. Note that this is an asynchronous process - the Policy will not be fully deleted yet when the response comes back.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteLegalHoldPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLegalHoldPolicy": {
+            "main": "./lib/actions/getLegalHoldPolicy.js",
+            "title": "Get Legal Hold Policy",
+            "description": "Get details of a single Legal Hold Policy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLegalHoldPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateLegalHoldPolicy": {
+            "main": "./lib/actions/updateLegalHoldPolicy.js",
+            "title": "Update Existing Legal Hold Policy",
+            "description": "Update existing Legal Hold Policy. Only name and description can be modified.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateLegalHoldPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLegalHoldPolicyAssignments": {
+            "main": "./lib/actions/getLegalHoldPolicyAssignments.js",
+            "title": "Get Legal hold policy assignments",
+            "description": "Get list of assignments for a single Policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLegalHoldPolicyAssignments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createLegalHoldPolicyAssignment": {
+            "main": "./lib/actions/createLegalHoldPolicyAssignment.js",
+            "title": "Create New Legal Hold Policy Assignment",
+            "description": "Create a new Assignment, which will apply the Legal Hold Policy to the target of the Assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createLegalHoldPolicyAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteLegalHoldPolicyAssignment": {
+            "main": "./lib/actions/deleteLegalHoldPolicyAssignment.js",
+            "title": "Delete Legal Hold Policy Assignment",
+            "description": "Sends request to delete an existing Assignment. Note that this is an asynchronous process - the Assignment will not be fully deleted yet when the response comes back.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteLegalHoldPolicyAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLegalHoldPolicyAssignment": {
+            "main": "./lib/actions/getLegalHoldPolicyAssignment.js",
+            "title": "Get Legal Hold Policy Assignment",
+            "description": "Get details of a single assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLegalHoldPolicyAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createMetadataTemplate": {
+            "main": "./lib/actions/createMetadataTemplate.js",
+            "title": "Create Metadata Template",
+            "description": "Used to create a new metadata template with the specified schema.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createMetadataTemplate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnterpriseMetadataTemplates": {
+            "main": "./lib/actions/getEnterpriseMetadataTemplates.js",
+            "title": "Get Enterprise Metadata",
+            "description": "Used to retrieve all metadata templates within a user's enterprise. Currently only the enterprise scope is supported.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnterpriseMetadataTemplates.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getMetadataTemplate": {
+            "main": "./lib/actions/getMetadataTemplate.js",
+            "title": "Get Metadata Template",
+            "description": "Used to retrieve the schema for a given metadata template.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getMetadataTemplate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateMetadataTemplate": {
+            "main": "./lib/actions/updateMetadataTemplate.js",
+            "title": "Update Metadata Template",
+            "description": "Used to update the schema of an existing template.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateMetadataTemplate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRetentionPolicies": {
+            "main": "./lib/actions/getRetentionPolicies.js",
+            "title": "Get Retention Policies",
+            "description": "Retrieves all of the retention policies for the given enterprise.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRetentionPolicies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createRetentionPolicy": {
+            "main": "./lib/actions/createRetentionPolicy.js",
+            "title": "Create Retention Policy",
+            "description": "Used to create a new retention policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createRetentionPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRetentionPolicy": {
+            "main": "./lib/actions/getRetentionPolicy.js",
+            "title": "Get Retention Policy",
+            "description": "Used to retrieve information about a retention policy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRetentionPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateRetentionPolicy": {
+            "main": "./lib/actions/updateRetentionPolicy.js",
+            "title": "Update Retention Policy",
+            "description": "Used to update a retention policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateRetentionPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRetentionPolicyAssignments": {
+            "main": "./lib/actions/getRetentionPolicyAssignments.js",
+            "title": "Get Retention Policy Assignments",
+            "description": "Returns a list of all retention policy assignments associated with a specified retention policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRetentionPolicyAssignments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createRetentionPolicyAssignment": {
+            "main": "./lib/actions/createRetentionPolicyAssignment.js",
+            "title": "Create Retention Policy Assignment",
+            "description": "Returns a list of all retention policy assignments associated with a specified retention policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createRetentionPolicyAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRetentionPolicyAssignment": {
+            "main": "./lib/actions/getRetentionPolicyAssignment.js",
+            "title": "Get Retention Policy Assignment",
+            "description": "Used to retrieve information about a retention policy assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRetentionPolicyAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "search": {
+            "main": "./lib/actions/search.js",
+            "title": "Searching for Content",
+            "description": "The search endpoint provides a powerful way of finding items that are accessible by a single user or an entire enterprise. Leverage the parameters listed below to generate targeted advanced searches.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/search.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getSharedItems": {
+            "main": "./lib/actions/getSharedItems.js",
+            "title": "Shared Items",
+            "description": "Shared items are any files or folders that are represented by a shared link. Shared items are different from other API resources in that a shared resource doesn't necessarily have to be in the account of the user accessing it. The actual shared link itself is used along with a normal access token.\nUsed to retrieve the metadata about a shared item when only given a shared link. Because of varying permission for shared links, a password may be required to retrieve the shared item. Once the item has been retrieved, you can make API requests against the actual resource /files/{id} or /folders/{id} as long as the shared link and optional password are in the header.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getSharedItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createTaskAssignment": {
+            "main": "./lib/actions/createTaskAssignment.js",
+            "title": "Create Task Assignment",
+            "description": "Used to assign a task to a single user. There can be multiple assignments on a given task.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createTaskAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTaskAssignment": {
+            "main": "./lib/actions/deleteTaskAssignment.js",
+            "title": "Delete Task Assignment",
+            "description": "Deletes a specific task assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTaskAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTaskAssignment": {
+            "main": "./lib/actions/getTaskAssignment.js",
+            "title": "Get Task Assignment",
+            "description": "Fetches a specific task assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTaskAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateTaskAssignment": {
+            "main": "./lib/actions/updateTaskAssignment.js",
+            "title": "Update Task Assignment",
+            "description": "Used to update a task assignment.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateTaskAssignment.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createTask": {
+            "main": "./lib/actions/createTask.js",
+            "title": "Create Task",
+            "description": "Used to create a single task for single user on a single file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createTask.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTask": {
+            "main": "./lib/actions/deleteTask.js",
+            "title": "Delete Task",
+            "description": "Permanently deletes a specific task.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTask.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTask": {
+            "main": "./lib/actions/getTask.js",
+            "title": "Get Task",
+            "description": "Fetches a specific task.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTask.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateTask": {
+            "main": "./lib/actions/updateTask.js",
+            "title": "Update Task",
+            "description": "Updates a specific task.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateTask.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTaskAssignments": {
+            "main": "./lib/actions/getTaskAssignments.js",
+            "title": "Get Assignments",
+            "description": "Retrieves all of the assignments for a given task.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTaskAssignments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEnterpriseUsers": {
+            "main": "./lib/actions/getEnterpriseUsers.js",
+            "title": "Get Enterprise Users",
+            "description": "Returns a list of all users for the Enterprise along with their user_id, public_name, and login.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEnterpriseUsers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createUser": {
+            "main": "./lib/actions/createUser.js",
+            "title": "Create User",
+            "description": "Used to provision a new user in an enterprise. This method only works for enterprise admins.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCurrentUser": {
+            "main": "./lib/actions/getCurrentUser.js",
+            "title": "Get Current User",
+            "description": "Retrieves information about the user who is currently logged in i.e. the user for whom this auth token was generated.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCurrentUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteUser": {
+            "main": "./lib/actions/deleteUser.js",
+            "title": "Delete User",
+            "description": "Deletes a user in an enterprise account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUser": {
+            "main": "./lib/actions/getUser.js",
+            "title": "Get User's Info",
+            "description": "Retrieves information about a user in the enterprise. Requires enterprise administration authorization.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateUser": {
+            "main": "./lib/actions/updateUser.js",
+            "title": "Update User, Change User's Login",
+            "description": "Used to edit the settings and information about a user. This method only works for enterprise admins. To roll a user out of the enterprise (and convert them to a standalone free user), update the special enterprise attribute to be null.\n\nUsed to convert one of the user's confirmed email aliases into the user's primary login.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateUser.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEmailAliases": {
+            "main": "./lib/actions/getEmailAliases.js",
+            "title": "Get Email Aliases",
+            "description": "Retrieves all email aliases for this user. The collection of email aliases does not include the primary login for the user; use GET /users/USER_ID to retrieve the login email address.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEmailAliases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addEmailAlias": {
+            "main": "./lib/actions/addEmailAlias.js",
+            "title": "Add Email Alias",
+            "description": "Adds a new email alias to the given user's account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addEmailAlias.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteUserEmailAlias": {
+            "main": "./lib/actions/deleteUserEmailAlias.js",
+            "title": "Delete Email Alias",
+            "description": "Removes an email alias from a user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteUserEmailAlias.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateUserFolder": {
+            "main": "./lib/actions/updateUserFolder.js",
+            "title": "Move User's Folder",
+            "description": "Moves all of the owned content from within one user's folder into a new folder in another user's account. You can move folders across users as long as the you have administrative permissions and the 'source' user owns the folders. To move everything from the root folder, use \"0\" which always represents the root folder of a Box account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateUserFolder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUserGroupMembership": {
+            "main": "./lib/actions/getUserGroupMembership.js",
+            "title": "Get Memberships for User",
+            "description": "Retrieves all of the group memberships for a given user. Note this is only available to group admins. To retrieve group memberships for the user making the API request, use the users/me/memberships endpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUserGroupMembership.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createWebLink": {
+            "main": "./lib/actions/createWebLink.js",
+            "title": "Create Web Link",
+            "description": "Creates a web link object within a given folder.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createWebLink.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteWebLink": {
+            "main": "./lib/actions/deleteWebLink.js",
+            "title": "Delete Web Link",
+            "description": "Deletes a web link and moves it to the trash",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteWebLink.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getWebLink": {
+            "main": "./lib/actions/getWebLink.js",
+            "title": "Get Web Link",
+            "description": "Use to get information about the web link.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getWebLink.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateWebLink": {
+            "main": "./lib/actions/updateWebLink.js",
+            "title": "Update Web Link",
+            "description": "Updates information for a web link.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateWebLink.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getWebhooks": {
+            "main": "./lib/actions/getWebhooks.js",
+            "title": "Get Webhooks",
+            "description": "Returns all defined webhooks for the requesting application and user, up to the limit. If no limit is supplied then Box uses the default limit of 100.\nIf more than limit webhooks are defined then Box returns the webhooks in batches. When the results are batched, Box sends limit webhooks along with a next_marker field in the response object. The value of the next_marker field is a marker string that you can use in later requests to tell Box which batch to send next.\nWhen you send a request that includes a marker string, Box sends the next batch of webhooks, beginning after the last webhook of the previous batch. When the response contains the last of the defined webhooks, Box omits the next_marker field from its response.\nYou can use limit and marker together with the marker string returned in the next_marker field to paginate lists of webhooks.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getWebhooks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createWebhook": {
+            "main": "./lib/actions/createWebhook.js",
+            "title": "Create Webhook",
+            "description": "Create Webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteWebhook": {
+            "main": "./lib/actions/deleteWebhook.js",
+            "title": "Delete Webhook",
+            "description": "Permanently deletes a webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getWebhook": {
+            "main": "./lib/actions/getWebhook.js",
+            "title": "Get Webhook",
+            "description": "Get a Webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateWebhook": {
+            "main": "./lib/actions/updateWebhook.js",
+            "title": "Update Webhook",
+            "description": "Update a Webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

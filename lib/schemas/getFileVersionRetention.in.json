@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_VERSION_RETENTION_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "FOLDER_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

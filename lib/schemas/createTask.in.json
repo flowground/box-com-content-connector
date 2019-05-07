@@ -1,0 +1,438 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "folder",
+                                "file",
+                                "user",
+                                "file_version",
+                                "lock",
+                                "collaboration",
+                                "comment",
+                                "task",
+                                "web_link",
+                                "collection",
+                                "task_assignment",
+                                "event",
+                                "realtime_server",
+                                "webhook_event",
+                                "webhook",
+                                "enterprise",
+                                "invite",
+                                "email_alias",
+                                "group",
+                                "group_membership",
+                                "device_pinner",
+                                "retention_policy",
+                                "retention_policy_assignment",
+                                "file_version_retention",
+                                "legal_hold_policy",
+                                "legal_hold_policy_assignment",
+                                "legal_hold",
+                                "upload_session"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "action": {
+                            "description": "The action the task assignee will be prompted to do. Must be review",
+                            "enum": [
+                                "review"
+                            ],
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "description": "When this task was created",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "created_by": {
+                            "description": "The user who created this task",
+                            "properties": {
+                                "id": {
+                                    "description": "Unqiue string identifying this user.",
+                                    "type": "string"
+                                },
+                                "login": {
+                                    "description": "The email address this user uses to login.",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Name of this user",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "user"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "due_at": {
+                            "description": "The date at which this task is due",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "is_completed": {
+                            "description": "Whether or not this task has been completed",
+                            "type": "boolean"
+                        },
+                        "item": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "folder",
+                                                        "file",
+                                                        "user",
+                                                        "file_version",
+                                                        "lock",
+                                                        "collaboration",
+                                                        "comment",
+                                                        "task",
+                                                        "web_link",
+                                                        "collection",
+                                                        "task_assignment",
+                                                        "event",
+                                                        "realtime_server",
+                                                        "webhook_event",
+                                                        "webhook",
+                                                        "enterprise",
+                                                        "invite",
+                                                        "email_alias",
+                                                        "group",
+                                                        "group_membership",
+                                                        "device_pinner",
+                                                        "retention_policy",
+                                                        "retention_policy_assignment",
+                                                        "file_version_retention",
+                                                        "legal_hold_policy",
+                                                        "legal_hold_policy_assignment",
+                                                        "legal_hold",
+                                                        "upload_session"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "etag": {
+                                                    "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "description": "The name of the folder.",
+                                                    "type": "string"
+                                                },
+                                                "sequence_id": {
+                                                    "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ],
+                                    "description": "It references either a file or a folder",
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "sha1": {
+                                            "description": "The sha1 hash of this file.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "It references either a file or a folder",
+                            "type": "object"
+                        },
+                        "message": {
+                            "description": "A message that will be included with this task",
+                            "type": "string"
+                        },
+                        "task_assignment_collection": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "limit": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "offset": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "order": {
+                                            "items": {
+                                                "properties": {
+                                                    "by": {
+                                                        "type": "string"
+                                                    },
+                                                    "direction": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "total_count": {
+                                            "format": "int64",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "entries": {
+                                            "items": {
+                                                "allOf": [
+                                                    {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": {
+                                                                "enum": [
+                                                                    "folder",
+                                                                    "file",
+                                                                    "user",
+                                                                    "file_version",
+                                                                    "lock",
+                                                                    "collaboration",
+                                                                    "comment",
+                                                                    "task",
+                                                                    "web_link",
+                                                                    "collection",
+                                                                    "task_assignment",
+                                                                    "event",
+                                                                    "realtime_server",
+                                                                    "webhook_event",
+                                                                    "webhook",
+                                                                    "enterprise",
+                                                                    "invite",
+                                                                    "email_alias",
+                                                                    "group",
+                                                                    "group_membership",
+                                                                    "device_pinner",
+                                                                    "retention_policy",
+                                                                    "retention_policy_assignment",
+                                                                    "file_version_retention",
+                                                                    "legal_hold_policy",
+                                                                    "legal_hold_policy_assignment",
+                                                                    "legal_hold",
+                                                                    "upload_session"
+                                                                ],
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "assigned_at": {
+                                                                "description": "The date at which this task assignment was assigned",
+                                                                "format": "date-time",
+                                                                "type": "string"
+                                                            },
+                                                            "assigned_by": {
+                                                                "description": "The user who assigned this task assignment",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "Unqiue string identifying this user.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "login": {
+                                                                        "description": "The email address this user uses to login.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "description": "Name of this user",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "type": {
+                                                                        "enum": [
+                                                                            "user"
+                                                                        ],
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            },
+                                                            "assigned_to": {
+                                                                "description": "It references a user",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "Unqiue string identifying this user.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "login": {
+                                                                        "description": "The email address this user uses to login.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "description": "Name of this user",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "type": {
+                                                                        "enum": [
+                                                                            "user"
+                                                                        ],
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            },
+                                                            "completed_at": {
+                                                                "description": "The date at which this task assignment was completed",
+                                                                "format": "date-time",
+                                                                "type": "string"
+                                                            },
+                                                            "item": {
+                                                                "allOf": [
+                                                                    {
+                                                                        "allOf": [
+                                                                            {
+                                                                                "properties": {
+                                                                                    "id": {
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "type": {
+                                                                                        "enum": [
+                                                                                            "folder",
+                                                                                            "file",
+                                                                                            "user",
+                                                                                            "file_version",
+                                                                                            "lock",
+                                                                                            "collaboration",
+                                                                                            "comment",
+                                                                                            "task",
+                                                                                            "web_link",
+                                                                                            "collection",
+                                                                                            "task_assignment",
+                                                                                            "event",
+                                                                                            "realtime_server",
+                                                                                            "webhook_event",
+                                                                                            "webhook",
+                                                                                            "enterprise",
+                                                                                            "invite",
+                                                                                            "email_alias",
+                                                                                            "group",
+                                                                                            "group_membership",
+                                                                                            "device_pinner",
+                                                                                            "retention_policy",
+                                                                                            "retention_policy_assignment",
+                                                                                            "file_version_retention",
+                                                                                            "legal_hold_policy",
+                                                                                            "legal_hold_policy_assignment",
+                                                                                            "legal_hold",
+                                                                                            "upload_session"
+                                                                                        ],
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "type": "object"
+                                                                            },
+                                                                            {
+                                                                                "properties": {
+                                                                                    "etag": {
+                                                                                        "description": "A unique string identifying the version of this folder.\nMay be null for some folders such as root or trash.",
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "name": {
+                                                                                        "description": "The name of the folder.",
+                                                                                        "type": "string"
+                                                                                    },
+                                                                                    "sequence_id": {
+                                                                                        "description": "A unique ID for use with the /events endpoint.\nMay be null for some folders such as root or trash.",
+                                                                                        "type": "string"
+                                                                                    }
+                                                                                },
+                                                                                "type": "object"
+                                                                            }
+                                                                        ],
+                                                                        "description": "It references either a file or a folder",
+                                                                        "type": "object"
+                                                                    },
+                                                                    {
+                                                                        "properties": {
+                                                                            "sha1": {
+                                                                                "description": "The sha1 hash of this file.",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    }
+                                                                ],
+                                                                "description": "It references either a file or a folder",
+                                                                "type": "object"
+                                                            },
+                                                            "message": {
+                                                                "description": "A message that will be included with this task assignment",
+                                                                "type": "string"
+                                                            },
+                                                            "reminded_at": {
+                                                                "description": "The date at which this task assignment was reminded",
+                                                                "format": "date-time",
+                                                                "type": "string"
+                                                            },
+                                                            "resolution_state": {
+                                                                "description": "State of this assignment (complete/incomplete)",
+                                                                "enum": [
+                                                                    "completed",
+                                                                    "incomplete",
+                                                                    "approved",
+                                                                    "rejected"
+                                                                ],
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "A collection Task Assignment.",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Tasks enabled file-centric workflows in Box. User can create tasks on files and assign them to collaborators on Box. You can read more about tasks in Box here.\n\n\t\t\t",
+            "title": "Task Object",
+            "type": "object"
+        }
+    }
+}

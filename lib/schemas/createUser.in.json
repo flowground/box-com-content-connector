@@ -1,0 +1,206 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "It references a user",
+                    "properties": {
+                        "id": {
+                            "description": "Unqiue string identifying this user.",
+                            "type": "string"
+                        },
+                        "login": {
+                            "description": "The email address this user uses to login.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Name of this user",
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "user"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "address": {
+                            "description": "The user’s address.",
+                            "type": "string"
+                        },
+                        "avatar_url": {
+                            "description": "URL of this user’s avatar image.",
+                            "type": "string"
+                        },
+                        "can_see_managed_users": {
+                            "description": "Whether this user can see other enterprise users in her contact list.",
+                            "type": "boolean"
+                        },
+                        "created_at": {
+                            "description": "The time this user was created.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "enterprise": {
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "enum": [
+                                                "folder",
+                                                "file",
+                                                "user",
+                                                "file_version",
+                                                "lock",
+                                                "collaboration",
+                                                "comment",
+                                                "task",
+                                                "web_link",
+                                                "collection",
+                                                "task_assignment",
+                                                "event",
+                                                "realtime_server",
+                                                "webhook_event",
+                                                "webhook",
+                                                "enterprise",
+                                                "invite",
+                                                "email_alias",
+                                                "group",
+                                                "group_membership",
+                                                "device_pinner",
+                                                "retention_policy",
+                                                "retention_policy_assignment",
+                                                "file_version_retention",
+                                                "legal_hold_policy",
+                                                "legal_hold_policy_assignment",
+                                                "legal_hold",
+                                                "upload_session"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Mini representation of this user’s enterprise, including the ID of its enterprise.",
+                            "type": "object"
+                        },
+                        "hostname": {
+                            "description": "The root (protocol, subdomain, domain) of any links that need to be generated for this user",
+                            "type": "string"
+                        },
+                        "is_exempt_from_device_limits": {
+                            "description": "Whether to exempt this user from Enterprise device limits.",
+                            "type": "boolean"
+                        },
+                        "is_exempt_from_login_verification": {
+                            "description": "Whether or not this user must use two-factor authentication.",
+                            "type": "boolean"
+                        },
+                        "is_external_collab_restricted": {
+                            "description": "Whether this user is allowed to collaborate with users outside her enterprise.",
+                            "type": "boolean"
+                        },
+                        "is_sync_enabled": {
+                            "description": "Whether or not this user can use Box Sync.",
+                            "type": "boolean"
+                        },
+                        "job_title": {
+                            "description": "The user’s job title.",
+                            "type": "string"
+                        },
+                        "language": {
+                            "description": "The language of this user. (ISO 639-1 Language Code)",
+                            "type": "string"
+                        },
+                        "max_upload_size": {
+                            "description": "The maximum individual file size in bytes this user can have.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "modified_at": {
+                            "description": "The time this user was last modified.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "my_tags": {
+                            "description": "Tags for all files and folders owned by this user.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "phone": {
+                            "description": "The user’s phone number.",
+                            "type": "string"
+                        },
+                        "role": {
+                            "description": "This user’s enterprise role. Can be admin, coadmin, or user.",
+                            "enum": [
+                                "admin",
+                                "coadmin",
+                                "user"
+                            ],
+                            "type": "string"
+                        },
+                        "space_amount": {
+                            "description": "The user’s total available space amount in bytes.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "space_used": {
+                            "description": "The amount of space in use by the user.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "status": {
+                            "description": "Can be active, inactive, cannot_delete_edit, or cannot_delete_edit_upload.",
+                            "enum": [
+                                "active",
+                                "inactive",
+                                "cannot_delete_edit",
+                                "cannot_delete_edit_upload"
+                            ],
+                            "type": "string"
+                        },
+                        "timezone": {
+                            "description": "The timezone of this user. (tz Database timezones)",
+                            "type": "string"
+                        },
+                        "tracking_codes": {
+                            "description": "An array of key/value pairs set by the user’s admin.",
+                            "items": {
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "The users endpoint is used for managing a user and its content. For an individual user, this includes their own user information and content. For an enterprise admin, this includes both the individual user and any other users in the admin’s enterprise account.",
+            "title": "User Object",
+            "type": "object"
+        }
+    }
+}

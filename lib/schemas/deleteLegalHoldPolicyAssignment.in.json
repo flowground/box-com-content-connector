@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "ASSIGNMENT_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

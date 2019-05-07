@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "GROUP_MEMBERSHIP_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

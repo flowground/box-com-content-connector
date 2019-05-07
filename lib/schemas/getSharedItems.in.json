@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "BoxApi": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

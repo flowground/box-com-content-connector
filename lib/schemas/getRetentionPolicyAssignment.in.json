@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "RETENTION_POLICY_ASSIGNMENT_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "SCOPE": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,117 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "enum": [
+                                        "folder",
+                                        "file",
+                                        "user",
+                                        "file_version",
+                                        "lock",
+                                        "collaboration",
+                                        "comment",
+                                        "task",
+                                        "web_link",
+                                        "collection",
+                                        "task_assignment",
+                                        "event",
+                                        "realtime_server",
+                                        "webhook_event",
+                                        "webhook",
+                                        "enterprise",
+                                        "invite",
+                                        "email_alias",
+                                        "group",
+                                        "group_membership",
+                                        "device_pinner",
+                                        "retention_policy",
+                                        "retention_policy_assignment",
+                                        "file_version_retention",
+                                        "legal_hold_policy",
+                                        "legal_hold_policy_assignment",
+                                        "legal_hold",
+                                        "upload_session"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "properties": {
+                                "name": {
+                                    "description": "The name of this group",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "Mini representation of the group, including id and name of group.",
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "created_at": {
+                            "description": "When this groups was created on Box’s servers",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "Human readable description of this Group.  This can be up to 255 characters long. Needs to be accessed via the fields parameter.",
+                            "type": "string"
+                        },
+                        "external_sync_identifier": {
+                            "description": "An arbitrary identifier that can be used by external group sync tools to link this Box Group to an external group.  Example values of this field could be an Active Directory Object ID or a Google Group ID.  We recommend use of this field in order to avoid issues when group names are updated in either Box or external systems. Needs to be accessed via the fields parameter.",
+                            "type": "string"
+                        },
+                        "invitability_level": {
+                            "description": "Specifies who can invite this group to collaborate on folders (Create Collaboration).\nadmins_only Master Admin, Coadmins, group's Group Admin.\nadmins_and_members Admins listed above and group members.\nall_managed_users All managed users in the enterprise.",
+                            "enum": [
+                                "admins_only",
+                                "admins_and_members",
+                                "all_managed_users"
+                            ],
+                            "type": "string"
+                        },
+                        "member_viewability_level": {
+                            "description": "Specifies who can view the members of this group (Get Memberships for Group).\nadmins_only Master Admin, Coadmins, group's Group Admin.\nadmins_and_members Admins and group members.\nall_managed_users All managed users in the enterprise.",
+                            "enum": [
+                                "admins_only",
+                                "admins_and_members",
+                                "all_managed_users"
+                            ],
+                            "type": "string"
+                        },
+                        "modified_at": {
+                            "description": "When this group was last updated on the Box servers",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "provenance": {
+                            "description": "Keeps track of which external source this group is coming from (e.g. \"Active Directory\", \"Google Groups\", \"Facebook Groups\").  This should be a human-readable identifier up to 255 characters long.  Setting this will also prevent Box users from editing this group directly through Box.  This is desirable for one-way syncing of groups. Needs to be accessed via the fields parameter.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Groups contain a set of users, and can be used in place of users in some operations, such as collaborations.",
+            "title": "Group Object",
+            "type": "object"
+        }
+    }
+}

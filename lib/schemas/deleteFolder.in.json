@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "FOLDER_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "recursive": {
+            "required": false,
+            "type": "boolean"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

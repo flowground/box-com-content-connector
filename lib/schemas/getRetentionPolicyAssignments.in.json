@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "POLICY_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "folder",
+                "enterprise"
+            ]
+        }
+    }
+}
